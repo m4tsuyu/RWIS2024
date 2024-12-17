@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "SuicaClone.sln"
+    "dotnet.defaultSolution": "RWIS2024.sln"
 }
