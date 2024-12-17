@@ -38,6 +38,7 @@ public class AudioAnalyzer : MonoBehaviour
     private void Update()
     {
         if (!isButtonPushed) return;
+        if (!managerScript.isNext) return;
 
         time += Time.deltaTime;
         if (time < RecordSec)
@@ -52,7 +53,7 @@ public class AudioAnalyzer : MonoBehaviour
         {
             int tone = System.Array.IndexOf(toneRecord, Mathf.Max(toneRecord)); // Œ‹‰Ê
             Tone = tone;
-            managerScript.isNext = true;
+            managerScript.isRecord = true;
             Debug.Log("tone = " + Tone);
 
             isButtonPushed = false;
