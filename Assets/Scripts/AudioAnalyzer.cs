@@ -13,13 +13,21 @@ public class AudioAnalyzer : MonoBehaviour
     const int TONE = 12;
 
     private AudioSource audio;
+    private GameObject manager;
+    private GameManager managerScript;
     private bool isSoundDetected = false;
     private bool isButtonPushed = false;
     private int[] toneRecord;
     private float time;
 
+    public int Tone { get; private set; }
+
     private void Start()
     {
+        manager = GameObject.Find("GameManager");
+        managerScript = manager.GetComponent<GameManager>();
+
+        Tone = -1;
         audio = GetComponent<AudioSource>();
         audio.clip = Microphone.Start(Microphone.devices[0], true, RecordSec, SamplingRate);
         audio.loop = true;
@@ -43,7 +51,9 @@ public class AudioAnalyzer : MonoBehaviour
         else
         {
             int tone = System.Array.IndexOf(toneRecord, Mathf.Max(toneRecord)); // Œ‹‰Ê
-            Debug.Log("tone = " + tone);
+            Tone = tone;
+            managerScript.isNext = true;
+            Debug.Log("tone = " + Tone);
 
             isButtonPushed = false;
         }
