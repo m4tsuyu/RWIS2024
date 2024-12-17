@@ -4,6 +4,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public bool isNext { get; set; }
+    public bool isRecord { get; set; }
     public int MaxSeedNo { get; private set; }
 
     [SerializeField] private seed[] seedPrefab;
