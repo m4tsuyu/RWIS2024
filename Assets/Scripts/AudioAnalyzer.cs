@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class AudioAnalyzer : MonoBehaviour
 {
-    [SerializeField] private int SamplingRate = 12000;
     [SerializeField] private int SampleSize = 2048; // 2ÇÃnèÊÇ…Ç∑ÇÈÇ±Ç∆
     [SerializeField] private float DetectedMinSpectrum = 0.04f;
     [SerializeField] private float DetectedMaxSpectrum = 0.3f;
     [SerializeField] private int RecordSec = 3;
 
     const int TONE = 12;
+    const int SamplingRate = 48000; // 48000Ç…å≈íËÇµÇ»Ç¢Ç∆Ç§Ç‹Ç≠Ç¢Ç©Ç»Ç¢
 
     private AudioSource audio;
     private GameObject manager;
