@@ -10,7 +10,9 @@
                 <ui:Button text="Menu" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-text-align: upper-center; white-space: nowrap;" />
             </ui:VisualElement>
             <ui:VisualElement name="Interface" style="flex-grow: 1; background-color: rgba(247, 255, 0, 0.82);">
-                <ui:VisualElement name="InputDisplay" style="flex-grow: 1; background-color: rgba(255, 26, 26, 0.75); height: 44%;" />
+                <ui:VisualElement name="InputDisplay" style="flex-grow: 1; background-color: rgba(255, 26, 26, 0.75); height: 44%;">
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                </ui:VisualElement>
                 <ui:VisualElement name="RecordButton" style="flex-grow: 1; background-color: rgb(214, 255, 30); height: 44%;" />
                 <ui:VisualElement style="flex-grow: 1; height: 10%;" />
             </ui:VisualElement>
