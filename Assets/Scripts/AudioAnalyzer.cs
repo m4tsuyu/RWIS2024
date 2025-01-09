@@ -39,7 +39,6 @@ public class AudioAnalyzer : MonoBehaviour
     {
         if (!isButtonPushed) return;
         if (!managerScript.isNext) return;
-
         time += Time.deltaTime;
         if (time < RecordSec)
         {
@@ -65,6 +64,7 @@ public class AudioAnalyzer : MonoBehaviour
     /// </summary>
     public void StartAnalyzer()
     {
+        if (!managerScript.isNext) return;
         toneRecord = new int[TONE];
         time = 0f;
 
