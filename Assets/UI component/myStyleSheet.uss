@@ -1,0 +1,51 @@
+.background {
+    background-color: rgb(171, 0, 19);
+}
+
+.normalpanel {
+    background-color: transparent;
+    margin: 5px;
+}
+
+#RecordButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.record-button {
+    min-height: 40px;
+    width: 40%;
+    height: 10%;
+    background-color: transparent;
+    border-color: rgb(131, 0, 243);
+    border-width: 2px;
+    border-radius: 10px;
+    -unity-text-align: center;
+    font-size: 14px;
+    color: rgb(131, 0, 243);
+    min-width: 160px;
+}
+
+.button:active {
+    background-color: rgb(188, 188, 188);
+    border-color: rgb(243, 191, 63);
+}
+
+.record-label {
+    color: rgb(188, 188, 188);
+    width: 40%;
+    height: 20%;
+    font-size: 16px;
+}
+
+.record-label.recording {
+    color: rgb(171, 0, 19);
+}
+
+.score-label {
+    background-color: transparent;
+    width: auto;
+    height: auto;
+    font-size: 16px;
+}
