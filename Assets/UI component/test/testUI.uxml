@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: row; -unity-background-image-tint-color: rgb(0, 0, 0); background-color: rgb(255, 255, 255); display: flex;">
+        <ui:VisualElement name="LeftDisplay" style="flex-grow: 1; -unity-background-image-tint-color: rgb(0, 0, 0); background-color: rgb(238, 249, 176); left: auto; width: 20%;">
+            <ui:VisualElement name="Score" style="flex-grow: 1; background-color: rgb(255, 237, 1); height: 20%;" />
+            <ui:VisualElement name="Tutorial" style="flex-grow: 1; background-color: rgb(244, 198, 0); height: 80%;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="CenterGameView" style="flex-grow: 1; background-color: rgb(150, 246, 255); width: 50%;" />
+        <ui:VisualElement name="RightInterface" style="flex-grow: 1; width: 30%;">
+            <ui:VisualElement name="Utility" style="flex-grow: 0; -unity-background-image-tint-color: rgb(0, 0, 0); background-color: rgb(255, 239, 193); flex-direction: row-reverse; width: auto; height: 10%;">
+                <ui:Button text="Menu" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-text-align: upper-center; white-space: nowrap;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Interface" style="flex-grow: 1; background-color: rgba(247, 255, 0, 0.82);">
+                <ui:VisualElement name="InputDisplay" style="flex-grow: 1; background-color: rgba(255, 26, 26, 0.75); height: 44%;" />
+                <ui:VisualElement name="RecordButton" style="flex-grow: 1; background-color: rgb(214, 255, 30); height: 44%;" />
+                <ui:VisualElement style="flex-grow: 1; height: 10%;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
