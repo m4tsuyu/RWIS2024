@@ -11,9 +11,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
 
-.record-button {
+    min-width: 160px;
     min-height: 40px;
     width: 40%;
     height: 10%;
@@ -21,26 +20,41 @@
     border-color: rgb(131, 0, 243);
     border-width: 2px;
     border-radius: 10px;
-    -unity-text-align: center;
-    font-size: 14px;
-    color: rgb(131, 0, 243);
-    min-width: 160px;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s, text-shadow 0.2s;
 }
 
-.button:active {
-    background-color: rgb(188, 188, 188);
-    border-color: rgb(243, 191, 63);
+#RecordButton:active {
+    background-color: rgb(204, 51, 0);
+    border: 2px solid rgb(255, 204, 102);
+    transform: ;
+    transition: none;
 }
 
-.record-label {
-    color: rgb(188, 188, 188);
+#RecordButton:focus {
+    background-color: rgb(255, 153, 51);
+    border: 2px solid rgb(255, 204, 102);
+    transform: ;
+    transition: none;
+}
+
+#RecordingLabel {
     width: 40%;
     height: 20%;
-    font-size: 16px;
+    color: rgb(204, 51, 0);
+    text-shadow: 2px 2px 0 rgb(255, 153, 0);
+    font-size: 30px;
+    text-align: center;
 }
 
-.record-label.recording {
-    color: rgb(171, 0, 19);
+#RecordingLabel:active {
+    color: rgb(255, 204, 102);
+    text-shadow: 1px 1px 0 rgb(204, 51, 0);
+}
+
+#RecordingLabel:focus {
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 0 rgb(204, 51, 0);
 }
 
 .score-label {
