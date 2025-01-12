@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class AudioAnalyzer : MonoBehaviour
 {
-    [SerializeField] private int SamplingRate = 12000;
     [SerializeField] private int SampleSize = 2048; // 2ÇÃnèÊÇ…Ç∑ÇÈÇ±Ç∆
     [SerializeField] private float DetectedMinSpectrum = 0.04f;
     [SerializeField] private float DetectedMaxSpectrum = 0.3f;
     [SerializeField] private int RecordSec = 3;
 
     const int TONE = 12;
+    const int SamplingRate = 48000; // 48000Ç…å≈íËÇµÇ»Ç¢Ç∆Ç§Ç‹Ç≠Ç¢Ç©Ç»Ç¢
 
     private AudioSource audio;
     private GameObject manager;
@@ -38,7 +38,7 @@ public class AudioAnalyzer : MonoBehaviour
     private void Update()
     {
         if (!isButtonPushed) return;
-
+        if (!managerScript.isNext) return;
         time += Time.deltaTime;
         if (time < RecordSec)
         {
@@ -52,7 +52,7 @@ public class AudioAnalyzer : MonoBehaviour
         {
             int tone = System.Array.IndexOf(toneRecord, Mathf.Max(toneRecord)); // åãâ 
             Tone = tone;
-            managerScript.isNext = true;
+            managerScript.isRecord = true;
             Debug.Log("tone = " + Tone);
 
             isButtonPushed = false;
@@ -64,6 +64,7 @@ public class AudioAnalyzer : MonoBehaviour
     /// </summary>
     public void StartAnalyzer()
     {
+        if (!managerScript.isNext) return;
         toneRecord = new int[TONE];
         time = 0f;
 
