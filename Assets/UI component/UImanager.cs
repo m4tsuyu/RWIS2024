@@ -49,8 +49,8 @@ public class UIController : MonoBehaviour
         // RecordButtonとRecordLabelのUI変更
         if (recordBtn != null && recordLabel != null)
         {
-            recordBtn.AddToClassList("#RecordingButton:active"); // ボタンスタイル変更
-            recordLabel.AddToClassList("#RecordingLabel:active"); // ラベルスタイル変更
+            recordBtn.AddToClassList("#RecordButton:active"); // ボタンスタイル変更
+            recordLabel.AddToClassList("#RecordLabel:active"); // ラベルスタイル変更
             recordLabel.text = "Now Recording...";
         }
 
