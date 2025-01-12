@@ -23,7 +23,7 @@
 }
 
 #RecordButton:active {
-    background-color: rgb(204, 200, 200);
+    background-color: rgb(204, 200, 0);
     border-width: 2px;
     border-style: solid;
     border-color: rgb(255, 204, 102);
