@@ -10,8 +10,6 @@
 #RecordButton {
     display: flex;
     justify-content: center;
-    align-items: center;
-
     min-width: 160px;
     min-height: 40px;
     width: 40%;
@@ -21,20 +19,22 @@
     border-width: 2px;
     border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.2s, border-color 0.2s, color 0.2s, text-shadow 0.2s;
+    transition: 0.2s;
 }
 
 #RecordButton:active {
-    background-color: rgb(204, 51, 0);
-    border: 2px solid rgb(255, 204, 102);
-    transform: ;
+    background-color: rgb(204, 200, 200);
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(255, 204, 102);
     transition: none;
 }
 
 #RecordButton:focus {
     background-color: rgb(255, 153, 51);
-    border: 2px solid rgb(255, 204, 102);
-    transform: ;
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(255, 204, 102);
     transition: none;
 }
 
@@ -43,13 +43,14 @@
     height: 20%;
     color: rgb(204, 51, 0);
     text-shadow: 2px 2px 0 rgb(255, 153, 0);
-    font-size: 30px;
-    text-align: center;
+    font-size: 15px;
+    -unity-text-align: center;
 }
 
 #RecordingLabel:active {
     color: rgb(255, 204, 102);
-    text-shadow: 1px 1px 0 rgb(204, 51, 0);
+     font-size: 30px;
+    text-shadow: 2px 2px 0 rgb(204, 51, 0);
 }
 
 #RecordingLabel:focus {
@@ -57,9 +58,10 @@
     text-shadow: 1px 1px 0 rgb(204, 51, 0);
 }
 
-.score-label {
+#ScoreLabel {
     background-color: transparent;
-    width: auto;
-    height: auto;
-    font-size: 16px;
+    color: rgb(204, 51, 0);
+    text-shadow: 2px 2px 0 rgb(255, 153, 0);
+    font-size: 25px;
+    -unity-text-align: center;
 }
