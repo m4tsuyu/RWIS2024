@@ -17,6 +17,7 @@ public class ojama : MonoBehaviour
     }
     void Update()
     {
+        Debug.Log(transform.position.y);
         if (Input.GetMouseButton(0) && isDrop == false)
         {
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -26,10 +27,10 @@ public class ojama : MonoBehaviour
             Drop();
         }
         if (isDrop) return;
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.x = Mathf.Clamp(mousePos.x + randomValue, -2.7f, 2.7f);
-        mousePos.y = 4.5f;
-        transform.position = mousePos;
+        // mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        // mousePos.x = Mathf.Clamp(mousePos.x + randomValue, -2.7f, 2.7f);
+        // mousePos.y = 4.5f;
+        // transform.position = mousePos;
     }
     private void Drop()
     {
