@@ -7,6 +7,7 @@ public class ojama : MonoBehaviour
     private float randomValue;
     public int seedNo;
     private UImanager uimanager;
+    private Vector2 mousePos;
 
     void Start()
     {
@@ -18,11 +19,14 @@ public class ojama : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && isDrop == false)
         {
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePos.x = Mathf.Clamp(mousePos.x, -2.7f, 2.7f);
+            mousePos.y = 3.5f;
+            transform.position = mousePos;
             Drop();
-            randomValue = Random.Range(-0.5f, 0.5f);
         }
         if (isDrop) return;
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.x = Mathf.Clamp(mousePos.x + randomValue, -2.7f, 2.7f);
         mousePos.y = 4.5f;
         transform.position = mousePos;
