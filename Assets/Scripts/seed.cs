@@ -47,12 +47,18 @@ public class seed : MonoBehaviour
             seed colseed = collision.gameObject.GetComponent<seed>();
             if (seedNo == colseed.seedNo && 
                 !isMergeFlag && 
-                !colseed.isMergeFlag && 
-                seedNo < GameManager.Instance.MaxSeedNo - 1) 
+                !colseed.isMergeFlag) 
             {
                 isMergeFlag = true;
                 colseed.isMergeFlag = true;
-                GameManager.Instance.MergeNext(transform.position, seedNo);
+                if(seedNo < GameManager.Instance.MaxSeedNo - 1)
+                {
+                    GameManager.Instance.MergeNext(transform.position, seedNo);
+                }
+                else if(seedNo = GameManager.Instance.MaxSeedNo - 1)
+                {
+                    GameManager.Instance.MergeLargest(transform.position, seedNo);
+                }
                 Destroy(gameObject);
                 Destroy(colseed.gameObject);
             }
