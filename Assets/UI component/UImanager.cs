@@ -50,7 +50,8 @@ public class UImanager : MonoBehaviour
     {
 
         // RecordButtonとRecordLabelのUI変更
-        changeRecordState(tapCount % 3);
+        // changeRecordState(tapCount % 3);
+        changeRecordState();
 
         //レコードの開始処理
         if (analyzer is not null)
@@ -74,7 +75,7 @@ public class UImanager : MonoBehaviour
             return;
         }
 
-        switch (tapCount)
+        switch (tapCount%3)
         {
             case 0:
                 //レコードボタンとレコードラベルのスタイルをデフォルトだけにする

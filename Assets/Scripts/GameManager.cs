@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
             Invoke("CreateSeed", 1f);
 
             //UIの変更
-            uimanager.changeRecordState(2);
+            uimanager.changeRecordState();
         }
     }
      private void CreateSeed()

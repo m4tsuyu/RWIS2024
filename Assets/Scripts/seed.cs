@@ -6,9 +6,12 @@ public class seed : MonoBehaviour
     public bool isDrop = false;
     public bool isMergeFlag = false;
     public int seedNo;
+    private UImanager uimanager;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        uimanager = GameObject.Find("UIDocument").GetComponent<UImanager>();
     }
     void Update()
     {
@@ -25,6 +28,8 @@ public class seed : MonoBehaviour
         isDrop = true;
         _rb.simulated = true;
         GameManager.Instance.isNext = true;
+        //UIの変更
+        uimanager.changeRecordState();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
