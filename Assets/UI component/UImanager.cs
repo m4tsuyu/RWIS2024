@@ -16,7 +16,7 @@ public class UImanager : MonoBehaviour
     Label recordLabel;
     Label scoreLabel;
 
-
+    int debug = 0;
     void Start()
     {
         analyzer = GameObject.Find("AudioAnalyzer").GetComponent<AudioAnalyzer>();
@@ -44,15 +44,10 @@ public class UImanager : MonoBehaviour
      */
     void recordStart()
     {
-        Debug.Log("レコードスタート");
+        Debug.Log(debug);
 
         // RecordButtonとRecordLabelのUI変更
-        if (recordBtn != null && recordLabel != null)
-        {
-            recordBtn.AddToClassList("#RecordButton:active"); // ボタンスタイル変更
-            recordLabel.AddToClassList("#RecordLabel:active"); // ラベルスタイル変更
-            displayLabel("Now Recording...");
-        }
+        changeRecordState(debug % 3);
 
         //レコードの開始処理
         if (analyzer is not null)
@@ -65,26 +60,35 @@ public class UImanager : MonoBehaviour
         }
         //デバック
         //displayScore(1000);
+        debug++;
     }
 
-    public void displayLabel(string text)
+    public void changeRecordState(int state)
     {
-        switch (text)
+        if (recordBtn is null || recordLabel is null)
         {
-            case "Tap!":
+            Debug.LogError("レコードのボタンかラベルがnull");
+            return;
+        }
+
+        switch (state)
+        {
+            case 0:
                 //レコードボタンをデフォルトだけにする
                 //ボタンの入力を受け付ける
-                recordLabel.text = text;
+                recordBtn.RemoveFromClassList("#RecordButton:active"); // スタイルを元に戻す
+                recordLabel.RemoveFromClassList("#RecordLabel:active"); // スタイルを元に戻す
+                recordLabel.text = "Tap!";
                 break;
-            case "Now Recording...":
+            case 1:
                 //レコードボタンにactive追加
                 //ボタン入力を受け付けない
-                recordLabel.text = text;
+                recordLabel.text = "Now Recording...";
                 break;
-            case "Drop!":
+            case 2:
                 //ボタンはアクティブのまま、ラベルスタイルとテキストだけ変更
                 //ボタン入力を受け付けないまま
-                recordLabel.text = text;
+                recordLabel.text = "Drop!";
                 break;
         }
     }
