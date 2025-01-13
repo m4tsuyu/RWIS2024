@@ -7,6 +7,7 @@ public class seed : MonoBehaviour
     public bool isMergeFlag = false;
     public int seedNo;
     private UImanager uimanager;
+    private Vector2 mousePos;
 
     void Start()
     {
@@ -16,9 +17,15 @@ public class seed : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButton(0) && isDrop == false)
+        {
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePos.x = Mathf.Clamp(mousePos.x, -2.7f, 2.7f);
+            mousePos.y = 3.5f;
+            transform.position = mousePos;
             Drop();
+        }
         if (isDrop) return;
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.x = Mathf.Clamp(mousePos.x, -2.7f, 2.7f);
         mousePos.y = 3.5f;
         transform.position = mousePos;
