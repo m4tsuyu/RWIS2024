@@ -169,7 +169,7 @@ public class UImanager : MonoBehaviour
             int tone = toneRecord[index];
             float r = (float)tone / sum;
             // ラベルの高さを設定
-            //inputTone[l].style.height = new StyleLength(r * inputDisplayHeight);
+            inputTone[l].style.height = new StyleLength(r * inputDisplayHeight);
             Debug.Log(r);
             l++;
         }
