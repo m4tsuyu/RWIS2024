@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
-        //ここAudioAnalyzer側の方に変えてほしい
+        //ここAudioAnalyzer側の方に変えてほしい→変えた
         if (isRecord)
         {
             // isRecordが立ったらseed生成
