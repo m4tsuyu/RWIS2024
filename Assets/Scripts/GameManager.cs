@@ -16,10 +16,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text txtScore;
 
     private int totalscore;
+    private GameObject audio;
+    private AudioAnalyzer audioScript;
     
     void Start()
     {
         // 諸々初期化
+        audio = GameObject.Find("AudioAnalyzer");
+        audioScript = audio.GetComponent<AudioAnalyzer>();
         Instance = this;
         MaxSeedNo = seedPrefab.Length;
         MaxOjamaNo = ojamaPrefab.Length;
@@ -32,18 +36,19 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //ここAudioAnalyzer側の方に変えてほしい
-        if (isNext)
+        if (isRecord)
         {
-            // isnextが立ったらseed生成
-            isNext = false;
-            Invoke("CreateSeed", 2f);
+            // isRecordが立ったらseed生成
+            isRecord = false;
+            Invoke("CreateSeed", 1f);
         }
     }
      private void CreateSeed()
     {
         isMissed = false;
         // 0~n-3の中でランダム生成→音程に合わせた値に変更してね
-        int i = Random.Range(-4, 7);
+        // int i = Random.Range(-4, 7);
+        int i = audioScript.Tone;
         //iがお邪魔の値ならisMissed trueに
         if (i<0)
         {

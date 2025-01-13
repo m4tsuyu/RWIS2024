@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class AudioAnalyzer : MonoBehaviour
 {
-    [SerializeField] private int SampleSize = 2048; // 2‚Ìnæ‚É‚·‚é‚±‚Æ
+    [SerializeField] private int SampleSize = 2048; // 2ï¿½ï¿½nï¿½ï¿½É‚ï¿½ï¿½é‚±ï¿½ï¿½
     //[SerializeField] private float DetectedMinSpectrum = 0.04f;
     //[SerializeField] private float DetectedMaxSpectrum = 0.3f;
     [SerializeField] private int RecordSec = 2;
 
     const int TONE = 12;
-    const int SamplingRate = 48000; // 48000‚ÉŒÅ’è‚µ‚È‚¢‚Æ‚¤‚Ü‚­‚¢‚©‚È‚¢
+    const int SamplingRate = 48000; // 48000ï¿½ÉŒÅ’è‚µï¿½È‚ï¿½ï¿½Æ‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½
 
     private AudioSource audio;
     private GameObject manager;
@@ -50,17 +50,17 @@ public class AudioAnalyzer : MonoBehaviour
         }
         else
         {
-            int tone = System.Array.IndexOf(toneRecord, Mathf.Max(toneRecord)); // Œ‹‰Ê
+            int tone = System.Array.IndexOf(toneRecord, Mathf.Max(toneRecord)); // ï¿½ï¿½ï¿½ï¿½
             Tone = MyTone(tone);
             managerScript.isRecord = true;
-            // Debug.Log("tone = " + Tone);
+            Debug.Log("tone = " + Tone);
 
             isButtonPushed = false;
         }
     }
 
     /// <summary>
-    /// ƒ{ƒ^ƒ“‰Ÿ‚³‚ê‚½‚Æ‚«‚Ìˆ—
+    /// ï¿½{ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½Æ‚ï¿½ï¿½Ìï¿½ï¿½ï¿½
     /// </summary>
     public void StartAnalyzer()
     {
@@ -72,7 +72,7 @@ public class AudioAnalyzer : MonoBehaviour
     }
 
     /// <summary>
-    /// RecordSec •bŠÔ‚Ì‰¹ºƒf[ƒ^‚ğƒ}ƒCƒN‚©‚çæ“¾
+    /// RecordSec ï¿½bï¿½Ô‚Ì‰ï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½}ï¿½Cï¿½Nï¿½ï¿½ï¿½ï¿½æ“¾
     /// </summary>
     public void StartRecordind()
     {
@@ -89,7 +89,7 @@ public class AudioAnalyzer : MonoBehaviour
     }
 
     /// <summary>
-    /// FFT‚Å‰¹ºƒf[ƒ^‚©‚çü”g”‚É•ÏŠ·
+    /// FFTï¿½Å‰ï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½É•ÏŠï¿½
     /// </summary>
     float[] AudioToSpectrum(AudioSource audio, int sampleSize)
     {
@@ -100,7 +100,7 @@ public class AudioAnalyzer : MonoBehaviour
     }
 
     /// <summary>
-    /// ü”g”ƒf[ƒ^‚©‚ç‰¹’ö‚Ég‚í‚ê‚éƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+    /// ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½ç‰¹ï¿½ï¿½ï¿½Égï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½Xï¿½ï¿½ï¿½æ“¾
     /// </summary>
     int FindPitchIndex(float[] spectrum)
     {
@@ -127,16 +127,16 @@ public class AudioAnalyzer : MonoBehaviour
     }
 
     /// <summary>
-    ///  ü”g”ƒf[ƒ^‚©‚ç‰¹’ö‚ğæ“¾iA0 = 0j
+    ///  ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½ç‰¹ï¿½ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½iA0 = 0ï¿½j
     /// </summary>
     float SpectrumToPitch(float[] spectrum, int maxIndex, int sampleSize)
     {
         if (maxIndex < 0) return -1;
 
-        // ‰¹’ö[Hz]æ“¾
+        // ï¿½ï¿½ï¿½ï¿½[Hz]ï¿½æ“¾
         float freq = (float)maxIndex;
 
-        // ƒXƒyƒNƒgƒ‹ƒŠ[ƒN‚Ì•â³
+        // ï¿½Xï¿½yï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½Nï¿½Ì•â³
         if (maxIndex > 0 && maxIndex < sampleSize - 1)
         {
             float dL = spectrum[maxIndex - 1] / spectrum[maxIndex];
@@ -146,7 +146,7 @@ public class AudioAnalyzer : MonoBehaviour
 
         float pitchHz = 0.5f * freq * SamplingRate / sampleSize;
 
-        // ‰¹ŠK‚Ö‚Ì•ÏŠ·iA0Šî€j
+        // ï¿½ï¿½ï¿½Kï¿½Ö‚Ì•ÏŠï¿½ï¿½iA0ï¿½î€ï¿½j
         float A0 = 55f;
         if (pitchHz == 0f) return -1;
 
@@ -155,30 +155,30 @@ public class AudioAnalyzer : MonoBehaviour
     }
 
     /// <summary>
-    /// ”’l‚Ì‰¹’ö‚ğ12‰¹ŠK‚É•ÏXiƒh = 0j
+    /// ï¿½ï¿½ï¿½lï¿½Ì‰ï¿½ï¿½ï¿½ï¿½ï¿½12ï¿½ï¿½ï¿½Kï¿½É•ÏXï¿½iï¿½h = 0ï¿½j
     /// </summary>
     int PitchToTwelveTone(float pitch)
     {
         // --------------
-        // 0 : C  (ƒh)
-        // 1 : C# (ƒh”)
-        // 2 : D  (ƒŒ)
-        // 3 : D# (ƒŒ”)
-        // 4 : E  (ƒ~)
-        // 5 : F  (ƒtƒ@)
-        // 6 : F# (ƒtƒ@#)
-        // 7 : G  (ƒ\)
-        // 8 : G# (ƒ\”)
-        // 9 : A  (ƒ‰)
-        // 10: A# (ƒ‰”)
-        // 11: B  (ƒV)
+        // 0 : C  (ï¿½h)
+        // 1 : C# (ï¿½hï¿½ï¿½)
+        // 2 : D  (ï¿½ï¿½)
+        // 3 : D# (ï¿½ï¿½ï¿½ï¿½)
+        // 4 : E  (ï¿½~)
+        // 5 : F  (ï¿½tï¿½@)
+        // 6 : F# (ï¿½tï¿½@#)
+        // 7 : G  (ï¿½\)
+        // 8 : G# (ï¿½\ï¿½ï¿½)
+        // 9 : A  (ï¿½ï¿½)
+        // 10: A# (ï¿½ï¿½ï¿½ï¿½)
+        // 11: B  (ï¿½V)
         // --------------
         int pitchInt = Mathf.RoundToInt(pitch);
         if (pitchInt < 0)
         {
             return -1;
         }
-        const int C_STANDARD = 3; // Šî€‚ğA‚©‚çC‚É•ÏX‚·‚é
+        const int C_STANDARD = 3; // ï¿½î€ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½Cï¿½É•ÏXï¿½ï¿½ï¿½ï¿½
         return (pitchInt + TONE - C_STANDARD) % TONE;
     }
 
@@ -186,13 +186,13 @@ public class AudioAnalyzer : MonoBehaviour
     {
         // --------------
         // C#, D#, F#, G#, A# -> -1
-        // C -> 0 (ƒh)
-        // D -> 1 (ƒŒ)
-        // E -> 2 (ƒ~)
-        // F -> 3 (ƒtƒ@)
-        // G -> 4 (ƒ\)
-        // A -> 5 (ƒ‰)
-        // B -> 6 (ƒV)
+        // C -> 0 (ï¿½h)
+        // D -> 1 (ï¿½ï¿½)
+        // E -> 2 (ï¿½~)
+        // F -> 3 (ï¿½tï¿½@)
+        // G -> 4 (ï¿½\)
+        // A -> 5 (ï¿½ï¿½)
+        // B -> 6 (ï¿½V)
         switch (tone)
         {
             case 0:  return 0;  // C
@@ -207,7 +207,7 @@ public class AudioAnalyzer : MonoBehaviour
     }
 
     /// <summary>
-    /// ŒŸo‚µ‚½‰¹—Ê‚ğ min ` max ‚Ü‚Å‚Å³‹K‰»
+    /// ï¿½ï¿½ï¿½oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê‚ï¿½ min ï¿½` max ï¿½Ü‚Å‚Åï¿½ï¿½Kï¿½ï¿½
     /// </summary>
     float NormalizeVolume(float vol, float min, float max)
     {
