@@ -5,9 +5,9 @@ using UnityEngine;
 public class AudioAnalyzer : MonoBehaviour
 {
     [SerializeField] private int SampleSize = 2048; // 2のn乗にすること
-    [SerializeField] private float DetectedMinSpectrum = 0.04f;
-    [SerializeField] private float DetectedMaxSpectrum = 0.3f;
-    [SerializeField] private int RecordSec = 3;
+    //[SerializeField] private float DetectedMinSpectrum = 0.04f;
+    //[SerializeField] private float DetectedMaxSpectrum = 0.3f;
+    [SerializeField] private int RecordSec = 2;
 
     const int TONE = 12;
     const int SamplingRate = 48000; // 48000に固定しないとうまくいかない
@@ -51,9 +51,9 @@ public class AudioAnalyzer : MonoBehaviour
         else
         {
             int tone = System.Array.IndexOf(toneRecord, Mathf.Max(toneRecord)); // 結果
-            Tone = tone;
+            Tone = MyTone(tone);
             managerScript.isRecord = true;
-            Debug.Log("tone = " + Tone);
+            // Debug.Log("tone = " + Tone);
 
             isButtonPushed = false;
         }
@@ -109,7 +109,14 @@ public class AudioAnalyzer : MonoBehaviour
 
         for (int i = 0; i < spectrum.Length; i++)
         {
+            /*
             if (spectrum[i] > DetectedMinSpectrum && maxVolume < spectrum[i])
+            {
+                maxVolume = spectrum[i];
+                maxIndex = i;
+            }
+            */
+            if (spectrum[i] > maxVolume)
             {
                 maxVolume = spectrum[i];
                 maxIndex = i;
@@ -158,8 +165,8 @@ public class AudioAnalyzer : MonoBehaviour
         // 2 : D  (レ)
         // 3 : D# (レ＃)
         // 4 : E  (ミ)
-        // 5 : F  (ミ＃)
-        // 6 : F# (ファ)
+        // 5 : F  (ファ)
+        // 6 : F# (ファ#)
         // 7 : G  (ソ)
         // 8 : G# (ソ＃)
         // 9 : A  (ラ)
@@ -173,6 +180,30 @@ public class AudioAnalyzer : MonoBehaviour
         }
         const int C_STANDARD = 3; // 基準をAからCに変更する
         return (pitchInt + TONE - C_STANDARD) % TONE;
+    }
+
+    int MyTone(int tone)
+    {
+        // --------------
+        // C#, D#, F#, G#, A# -> -1
+        // C -> 0 (ド)
+        // D -> 1 (レ)
+        // E -> 2 (ミ)
+        // F -> 3 (ファ)
+        // G -> 4 (ソ)
+        // A -> 5 (ラ)
+        // B -> 6 (シ)
+        switch (tone)
+        {
+            case 0:  return 0;  // C
+            case 2:  return 1;  // D
+            case 4:  return 2;  // E
+            case 5:  return 3;  // F
+            case 7:  return 4;  // G
+            case 9:  return 5;  // A
+            case 11: return 6;  // B
+            default: return -1; // others
+        }
     }
 
     /// <summary>
