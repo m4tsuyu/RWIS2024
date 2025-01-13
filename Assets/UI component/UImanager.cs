@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class UImanager : MonoBehaviour
@@ -16,7 +17,8 @@ public class UImanager : MonoBehaviour
     Label recordLabel;
     Label scoreLabel;
 
-    int debug = 0;
+    private int tapCount;
+
     void Start()
     {
         analyzer = GameObject.Find("AudioAnalyzer").GetComponent<AudioAnalyzer>();
@@ -27,12 +29,14 @@ public class UImanager : MonoBehaviour
         //ボタンイベントの登録
         recordBtn = root.Q<Button>("RecordButton");
         if (recordBtn is not null) recordBtn.clicked += () => { recordStart(); };
-        munuBtn = root.Q<Button>("Button1");
-        if (munuBtn is not null) munuBtn.clicked += () => { /* クリック時の処理 */ };
+        munuBtn = root.Q<Button>("MenuButton");
+        if (munuBtn is not null) munuBtn.clicked += () => { gobackTitle(); };
+
 
         //動的なコンポーネントの取得
         scoreLabel = root.Q<Label>("ScoreLabel");
         recordLabel = root.Q<Label>("RecordLabel");
+        tapCount = 1;
     }
 
     void Update()
@@ -44,10 +48,10 @@ public class UImanager : MonoBehaviour
      */
     void recordStart()
     {
-        Debug.Log(debug);
+        Debug.Log(tapCount);
 
         // RecordButtonとRecordLabelのUI変更
-        changeRecordState(debug % 3);
+        changeRecordState(tapCount % 3);
 
         //レコードの開始処理
         if (analyzer is not null)
@@ -59,8 +63,8 @@ public class UImanager : MonoBehaviour
             Debug.LogError("analzerが指定されてない");
         }
         //デバック
-        displayScore(debug);
-        debug++;
+        //displayScore(debug);
+        tapCount++;
     }
 
     public void changeRecordState(int state)
@@ -130,5 +134,10 @@ public class UImanager : MonoBehaviour
     public void displayScore(int text)
     {
         scoreLabel.text = text.ToString("D6");
+    }
+
+    public void gobackTitle()
+    {
+        SceneManager.LoadScene("TitleScene");
     }
 }
