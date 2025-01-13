@@ -15,6 +15,7 @@ public class AudioAnalyzer : MonoBehaviour
     private AudioSource audio;
     private GameObject manager;
     private GameManager managerScript;
+    private UImanager uimanager;
     private bool isSoundDetected = false;
     private bool isButtonPushed = false;
     private int[] toneRecord;
@@ -26,7 +27,7 @@ public class AudioAnalyzer : MonoBehaviour
     {
         manager = GameObject.Find("GameManager");
         managerScript = manager.GetComponent<GameManager>();
-
+        uimanager = GameObject.Find("UIDocument").GetComponent<UImanager>();
 
         Tone = -1;
         audio = GetComponent<AudioSource>();
@@ -47,7 +48,11 @@ public class AudioAnalyzer : MonoBehaviour
             int maxIndex = FindPitchIndex(spectrum);
             float pitch = SpectrumToPitch(spectrum, maxIndex, SampleSize);
             int tone = PitchToTwelveTone(pitch);
-            if (0 <= tone && tone < TONE) toneRecord[tone]++;
+            if (0 <= tone && tone < TONE) 
+            {
+                toneRecord[tone]++;
+                uimanager.displayInput(toneRecord);
+            }
         }
         else
         {
