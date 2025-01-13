@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         MaxOjamaNo = ojamaPrefab.Length;
         // scoreの初期化
         totalscore = 0;
-        SetScore(totalscore);
+        //SetScore(totalscore);
 
         //ここisNext=trueにしてAudioAnalyzerに投げる
         isNext=true;

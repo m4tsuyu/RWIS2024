@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -9,7 +9,7 @@ public class UImanager : MonoBehaviour
     [SerializeField] private GameManager manager;
     private VisualElement root;
 
-    //“®“I‚ÈUIƒp[ƒc
+    //å‹•çš„ãªUIãƒ‘ãƒ¼ãƒ„
     Button recordBtn;
     Button munuBtn;
 
@@ -24,13 +24,13 @@ public class UImanager : MonoBehaviour
 
         root = this.GetComponent<UIDocument>().rootVisualElement;
 
-        //ƒ{ƒ^ƒ“ƒCƒxƒ“ƒg‚Ì“o˜^
+        //ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆã®ç™»éŒ²
         recordBtn = root.Q<Button>("RecordButton");
         if (recordBtn is not null) recordBtn.clicked += () => { recordStart(); };
         munuBtn = root.Q<Button>("Button1");
-        if (munuBtn is not null) munuBtn.clicked += () => { /* ƒNƒŠƒbƒN‚Ìˆ— */ };
+        if (munuBtn is not null) munuBtn.clicked += () => { /* ã‚¯ãƒªãƒƒã‚¯æ™‚ã®å‡¦ç† */ };
 
-        //“®“I‚ÈƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìæ“¾
+        //å‹•çš„ãªã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å–å¾—
         scoreLabel = root.Q<Label>("ScoreLabel");
         recordLabel = root.Q<Label>("RecordLabel");
     }
@@ -40,26 +40,26 @@ public class UImanager : MonoBehaviour
     }
 
     /* 
-     * ƒŒƒR[ƒhƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Æ‚«‚Ìˆ—
+     * ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã¨ãã®å‡¦ç†
      */
     void recordStart()
     {
         Debug.Log(debug);
 
-        // RecordButton‚ÆRecordLabel‚ÌUI•ÏX
+        // RecordButtonã¨RecordLabelã®UIå¤‰æ›´
         changeRecordState(debug % 3);
 
-        //ƒŒƒR[ƒh‚ÌŠJnˆ—
+        //ãƒ¬ã‚³ãƒ¼ãƒ‰ã®é–‹å§‹å‡¦ç†
         if (analyzer is not null)
         {
-            //analyzer.StartAnalyzer();
+            analyzer.StartAnalyzer();
         }
         else
         {
-            Debug.LogError("analzer‚ªw’è‚³‚ê‚Ä‚È‚¢");
+            Debug.LogError("analzerãŒæŒ‡å®šã•ã‚Œã¦ãªã„");
         }
-        //ƒfƒoƒbƒN
-        //displayScore(1000);
+        //ãƒ‡ãƒãƒƒã‚¯
+        displayScore(debug);
         debug++;
     }
 
@@ -67,28 +67,57 @@ public class UImanager : MonoBehaviour
     {
         if (recordBtn is null || recordLabel is null)
         {
-            Debug.LogError("ƒŒƒR[ƒh‚Ìƒ{ƒ^ƒ“‚©ƒ‰ƒxƒ‹‚ªnull");
+            Debug.LogError("ãƒ¬ã‚³ãƒ¼ãƒ‰ã®ãƒœã‚¿ãƒ³ã‹ãƒ©ãƒ™ãƒ«ãŒnull");
             return;
         }
 
         switch (state)
         {
             case 0:
-                //ƒŒƒR[ƒhƒ{ƒ^ƒ“‚ğƒfƒtƒHƒ‹ƒg‚¾‚¯‚É‚·‚é
-                //ƒ{ƒ^ƒ“‚Ì“ü—Í‚ğó‚¯•t‚¯‚é
-                recordBtn.RemoveFromClassList("#RecordButton:active"); // ƒXƒ^ƒCƒ‹‚ğŒ³‚É–ß‚·
-                recordLabel.RemoveFromClassList("#RecordLabel:active"); // ƒXƒ^ƒCƒ‹‚ğŒ³‚É–ß‚·
+                //ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒœã‚¿ãƒ³ã¨ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ©ãƒ™ãƒ«ã®ã‚¹ã‚¿ã‚¤ãƒ«ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã ã‘ã«ã™ã‚‹
+                recordBtn.RemoveFromClassList("#RecordButton:active"); //ã‚¹ã‚¿ã‚¤ãƒ«ã‚’æˆ»ã™
+                recordLabel.style.fontSize = 25f;
+                recordLabel.style.color = new Color(204/ 255f, 51/255f, 0); 
+                recordLabel.style.textShadow = new TextShadow
+                {
+                    offset = new Vector2(2, 2),
+                    color = new Color(63 / 255f, 198 / 255f, 88 / 255f),
+                };
+
                 recordLabel.text = "Tap!";
+
+                //ãƒœã‚¿ãƒ³ã®å…¥åŠ›ã‚’å—ã‘ä»˜ã‘ã‚‹ã‚ˆã†å¤‰æ›´
+                recordBtn.SetEnabled(true);
                 break;
             case 1:
-                //ƒŒƒR[ƒhƒ{ƒ^ƒ“‚Éactive’Ç‰Á
-                //ƒ{ƒ^ƒ““ü—Í‚ğó‚¯•t‚¯‚È‚¢
+                //ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒœã‚¿ãƒ³ã«activeè¿½åŠ 
+                recordBtn.AddToClassList("#RecordButton:active"); //activeã‚’è¿½åŠ 
+                recordLabel.style.fontSize = 10f;
+
+                recordLabel.style.color = new Color(235 / 255f, 219 /255f, 0); 
+                recordLabel.style.textShadow = new TextShadow
+                {
+                    offset = new Vector2(2, 2),
+                    color = new Color(255 / 255f, 153 / 255f, 0), // ã‚ªãƒ¬ãƒ³ã‚¸è‰²
+                };
+
                 recordLabel.text = "Now Recording...";
+                //ãƒœã‚¿ãƒ³å…¥åŠ›ã‚’å—ã‘ä»˜ã‘ãªã„ã‚ˆã†å¤‰æ›´
+
                 break;
             case 2:
-                //ƒ{ƒ^ƒ“‚ÍƒAƒNƒeƒBƒu‚Ì‚Ü‚ÜAƒ‰ƒxƒ‹ƒXƒ^ƒCƒ‹‚ÆƒeƒLƒXƒg‚¾‚¯•ÏX
-                //ƒ{ƒ^ƒ““ü—Í‚ğó‚¯•t‚¯‚È‚¢‚Ü‚Ü
+                //ãƒœã‚¿ãƒ³ã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®ã¾ã¾ã€ãƒ©ãƒ™ãƒ«ã‚¹ã‚¿ã‚¤ãƒ«ã¨ãƒ†ã‚­ã‚¹ãƒˆã ã‘å¤‰æ›´
+                recordLabel.style.fontSize = 25f;
+                recordLabel.style.color = new Color(171 / 255f,0,  255 / 255f);
+                recordLabel.style.textShadow = new TextShadow
+                {
+                    offset = new Vector2(2, 2),
+                    color = new Color(244 / 255f, 192 / 255f, 63/255f), // ã‚ªãƒ¬ãƒ³ã‚¸è‰²
+                };
+
                 recordLabel.text = "Drop!";
+                //ãƒœã‚¿ãƒ³å…¥åŠ›ã‚’å—ã‘ä»˜ã‘ãªã„ã¾ã¾
+
                 break;
         }
     }
