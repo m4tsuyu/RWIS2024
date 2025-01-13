@@ -48,8 +48,8 @@
 
 .record-label-operating {
     font-size: 40px;
-    color: rgb(0, 171, 0);
-    text-shadow: 2px 2px 0 rgb(244, 192, 63);
+    color: rgb(255, 150, 0);
+    text-shadow: 2px 2px 0 rgb(231, 0, 90);
 }
 
 #ScoreLabel {

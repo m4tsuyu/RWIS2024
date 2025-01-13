@@ -20,8 +20,9 @@ public class UImanager : MonoBehaviour
     Label recordLabel;
     Label nextLabel;
     Label scoreLabel;
+    Label ojamaLabel;
 
-    VisualElement inputDisplay;
+     VisualElement inputDisplay;
     Label[] inputTone = new Label[7];
 
     //UI用遷移
@@ -49,8 +50,11 @@ public class UImanager : MonoBehaviour
         scoreLabel = root.Q<Label>("ScoreLabel");
         recordLabel = root.Q<Label>("RecordLabel");
         nextLabel = root.Q<Label>("NextNodeLabel");
+        ojamaLabel = root.Q<Label>("OjamaLabel");
+
         //初期化
-        displayNextNode(6);
+        displayNextNode(-1);
+        displayNextOjama(-1);
         
         //音階用ラベル
         inputTone[0] = root.Q<Label>("C");
@@ -81,7 +85,6 @@ public class UImanager : MonoBehaviour
      */
     void recordStart()
     {
-
         // RecordButtonとRecordLabelのUI変更
         changeRecordState();
 
@@ -130,11 +133,11 @@ public class UImanager : MonoBehaviour
                 recordBtn.AddToClassList("#RecordButton:active"); //activeを追加
                 recordLabel.style.fontSize = 10f;
 
-                recordLabel.style.color = new Color(235 / 255f, 219 /255f, 0); 
+                recordLabel.style.color = new Color(192 / 255f, 0, 192 /255f); 
                 recordLabel.style.textShadow = new TextShadow
                 {
                     offset = new Vector2(2, 2),
-                    color = new Color(255 / 255f, 153 / 255f, 0), // オレンジ色
+                    color = new Color(0, 235 / 255f, 219 / 255f), //水色
                 };
 
                 recordLabel.text = "Now Recording...";
@@ -143,16 +146,16 @@ public class UImanager : MonoBehaviour
                 break;
             case 2:
                 //ボタンはアクティブのまま、ラベルスタイルとテキストだけ変更
+                //ボタン入力を受け付けないまま
                 recordLabel.style.fontSize = 25f;
-                recordLabel.style.color = new Color(171 / 255f,0,  255 / 255f);
+                recordLabel.style.color = new Color(1f, 150/ 255f,0); //オレンジ
                 recordLabel.style.textShadow = new TextShadow
                 {
                     offset = new Vector2(2, 2),
-                    color = new Color(244 / 255f, 192 / 255f, 63/255f), // オレンジ色
+                    color = new Color(230 / 255f, 0, 92 / 255f), // ピンク色
                 };
 
                 recordLabel.text = "Drop!";
-                //ボタン入力を受け付けないまま
                 break;
         }
         tapCount++;
@@ -170,8 +173,47 @@ public class UImanager : MonoBehaviour
             float r = (float)tone / sum;
             // ラベルの高さを設定
             inputTone[l].style.height = new StyleLength(r * inputDisplayHeight);
-            Debug.Log(r);
+            //Debug.Log(r);
             l++;
+        }
+    }
+
+    public void displayNextOjama(int next)
+    {
+        switch (next)
+        {
+            case 0: //C
+                ojamaLabel.style.color = new Color(1f, 45/255f, 85 / 255f);
+                ojamaLabel.text = "C";
+                break;
+            case 1: //D
+                ojamaLabel.style.color = new Color(1f, 59 / 255f, 48 / 255f);
+                ojamaLabel.text = "D";
+                break;
+            case 2: //E
+                ojamaLabel.style.color = new Color(1f, 149 / 255f, 0);
+                ojamaLabel.text = "E";
+                break;
+            case 3: //F
+                ojamaLabel.style.color = new Color(1f, 204 / 255f, 0);
+                ojamaLabel.text = "F";
+                break;
+            case 4: //G
+                ojamaLabel.style.color = new Color(131 / 255f, 211 / 255f, 19 / 255f);
+                ojamaLabel.text = "G";
+                break;
+            case 5: //A
+                ojamaLabel.style.color = new Color(52 / 255f, 199 / 255f, 89 / 255f);
+                ojamaLabel.text = "A";
+                break;
+            case 6: //B
+                ojamaLabel.style.color = new Color(0f, 235 / 255f, 219 / 255f);
+                ojamaLabel.text = "B";
+                break;
+            default: //ojama
+                ojamaLabel.style.color = new Color(178 / 255f, 178 / 255f, 178 / 255f);
+                ojamaLabel.text = "×";
+                break;
         }
     }
 

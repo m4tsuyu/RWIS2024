@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
         }
 
         uimanager.displayNextNode(i);
+        //uimanager.displayNextOjama(prevSeedNo);
     }
 
     public void MergeNext(Vector3 target,int seedNo)
@@ -108,7 +109,6 @@ public class GameManager : MonoBehaviour
         totalscore += (int)Mathf.Pow(3, seedNo);
         SetScore(totalscore);
     }
-
 
     public void MergeNextOjama(Vector3 target,int seedNo)
     {
