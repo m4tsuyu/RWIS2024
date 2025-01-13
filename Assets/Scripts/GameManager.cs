@@ -20,13 +20,12 @@ public class GameManager : MonoBehaviour
     {
         // 諸々初期化
         Instance = this;
-        isNext = false;
         MaxSeedNo = seedPrefab.Length;
         // scoreの初期化
         totalscore = 0;
         SetScore(totalscore);
-        //seedを上に生成
-        CreateSeed();
+        //ここisNext=trueにしてAudioAnalyzerに投げる
+        isNext=true;
     }
     void Update()
     {
@@ -41,7 +40,7 @@ public class GameManager : MonoBehaviour
     {
         isMissed = false;
         // 0~n-3の中でランダム生成→音程に合わせた値に変更してね
-        int i = Random.Range(-1, MaxSeedNo - 2);
+        int i = Random.Range(-1, 0);
         //iがお邪魔の値ならisMissed trueに
         if (i<0)
         {
