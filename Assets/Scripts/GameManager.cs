@@ -57,18 +57,22 @@ public class GameManager : MonoBehaviour
         // 0~n-3の中でランダム生成→音程に合わせた値に変更してね
         // int i = Random.Range(-4, 7);
         int i = audioScript.Tone;
+        if(i == prevSeedNo)
+        {
+            i = -1;
+        }
         //iがお邪魔の値ならisMissed trueに
         if (i<0)
         {
             isMissed = true;
         }
         //isMissed trueのときお邪魔生成
-        if(isMissed || i == prevSeedNo)
+        if(isMissed)
         {
             ojama ojamaIns = Instantiate(ojamaPrefab[0], ojamaPosition);
             ojamaIns.seedNo = 0;
             ojamaIns.gameObject.SetActive(true);
-            prevSeedNo = -1;
+            prevSeedNo = i;
         }
         else
         {
