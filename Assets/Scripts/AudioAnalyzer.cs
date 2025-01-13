@@ -69,6 +69,7 @@ public class AudioAnalyzer : MonoBehaviour
         time = 0f;
 
         isButtonPushed = true;
+        managerScript.isNext = false;
     }
 
     /// <summary>
