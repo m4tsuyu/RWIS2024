@@ -6,9 +6,12 @@ public class ojama : MonoBehaviour
     public bool isMergeFlag = false;
     private float randomValue;
     public int seedNo;
+    private UImanager uimanager;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        uimanager = GameObject.Find("UIDocument").GetComponent<UImanager>();
         // randomValue = Random.Range(-0.5f, 0.5f);
     }
     void Update()
@@ -29,6 +32,8 @@ public class ojama : MonoBehaviour
         isDrop = true;
         _rb.simulated = true;
         GameManager.Instance.isNext = true;
+        //UIの変更
+        uimanager.changeRecordState();
     }
 
 

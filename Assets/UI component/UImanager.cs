@@ -48,10 +48,10 @@ public class UImanager : MonoBehaviour
      */
     void recordStart()
     {
-        Debug.Log(tapCount);
 
         // RecordButtonとRecordLabelのUI変更
-        changeRecordState(tapCount % 3);
+        // changeRecordState(tapCount % 3);
+        changeRecordState();
 
         //レコードの開始処理
         if (analyzer is not null)
@@ -64,18 +64,18 @@ public class UImanager : MonoBehaviour
         }
         //デバック
         //displayScore(debug);
-        tapCount++;
     }
 
-    public void changeRecordState(int state)
+    public void changeRecordState()
     {
+        //デバック用
         if (recordBtn is null || recordLabel is null)
         {
             Debug.LogError("レコードのボタンかラベルがnull");
             return;
         }
 
-        switch (state)
+        switch (tapCount%3)
         {
             case 0:
                 //レコードボタンとレコードラベルのスタイルをデフォルトだけにする
@@ -107,7 +107,7 @@ public class UImanager : MonoBehaviour
 
                 recordLabel.text = "Now Recording...";
                 //ボタン入力を受け付けないよう変更
-
+                recordBtn.SetEnabled(false);
                 break;
             case 2:
                 //ボタンはアクティブのまま、ラベルスタイルとテキストだけ変更
@@ -121,9 +121,9 @@ public class UImanager : MonoBehaviour
 
                 recordLabel.text = "Drop!";
                 //ボタン入力を受け付けないまま
-
                 break;
         }
+        tapCount++;
     }
 
     void displayInput()
