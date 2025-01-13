@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
+        //ここAudioAnalyzer側の方に変えてほしい
         if (isNext)
         {
             // isnextが立ったらseed生成
@@ -40,7 +41,7 @@ public class GameManager : MonoBehaviour
     {
         isMissed = false;
         // 0~n-3の中でランダム生成→音程に合わせた値に変更してね
-        int i = Random.Range(-1, 0);
+        int i = Random.Range(-4, 7);
         //iがお邪魔の値ならisMissed trueに
         if (i<0)
         {
@@ -70,6 +71,10 @@ public class GameManager : MonoBehaviour
         totalscore += (int)Mathf.Pow(3, seedNo);
         SetScore(totalscore);
     }
+
+    // public void Mergeojama(Vector3 target,int seedNo)
+    // {
+    // }
 
     private void SetScore(int score)
     {
