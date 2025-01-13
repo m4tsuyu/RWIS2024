@@ -55,7 +55,7 @@ public class seed : MonoBehaviour
                 {
                     GameManager.Instance.MergeNext(transform.position, seedNo);
                 }
-                else if(seedNo = GameManager.Instance.MaxSeedNo - 1)
+                else if(seedNo == GameManager.Instance.MaxSeedNo - 1)
                 {
                     GameManager.Instance.MergeLargest(transform.position, seedNo);
                 }
