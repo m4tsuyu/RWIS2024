@@ -9,7 +9,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameManager manager;
     private VisualElement root;
 
-    //“®“I‚ÈUIƒp[ƒc
+    //å‹•çš„ãªUIãƒ‘ãƒ¼ãƒ„
     Button recordBtn;
     Button munuBtn;
 
@@ -22,13 +22,13 @@ public class UIController : MonoBehaviour
 
         root = this.GetComponent<UIDocument>().rootVisualElement;
 
-        //ƒ{ƒ^ƒ“ƒCƒxƒ“ƒg‚Ì“o˜^
+        //ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆã®ç™»éŒ²
         recordBtn = root.Q<Button>("RecordButton");
         if (recordBtn is not null) recordBtn.clicked += () => { recordStart(); };
         munuBtn = root.Q<Button>("Button1");
-        if (munuBtn is not null) munuBtn.clicked += () => { /* ƒNƒŠƒbƒN‚Ìˆ— */ };
+        if (munuBtn is not null) munuBtn.clicked += () => { /* ã‚¯ãƒªãƒƒã‚¯æ™‚ã®å‡¦ç† */ };
 
-        //“®“I‚ÈƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìæ“¾
+        //å‹•çš„ãªã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å–å¾—
         scoreLabel = root.Q<Label>("ScoreLabel");
         recordLabel = root.Q<Label>("RecordLabel");
     }
@@ -40,30 +40,30 @@ public class UIController : MonoBehaviour
     }
 
     /* 
-     * ƒŒƒR[ƒhƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Æ‚«‚Ìˆ—
+     * ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã¨ãã®å‡¦ç†
      */
     void recordStart()
     {
-        Debug.Log("ƒŒƒR[ƒhƒXƒ^[ƒg");
+        Debug.Log("ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚¹ã‚¿ãƒ¼ãƒˆ");
 
-        // RecordButton‚ÆRecordLabel‚ÌUI•ÏX
+        // RecordButtonã¨RecordLabelã®UIå¤‰æ›´
         if (recordBtn != null && recordLabel != null)
         {
-            recordBtn.AddToClassList("#RecordButton:active"); // ƒ{ƒ^ƒ“ƒXƒ^ƒCƒ‹•ÏX
-            recordLabel.AddToClassList("#RecordLabel:active"); // ƒ‰ƒxƒ‹ƒXƒ^ƒCƒ‹•ÏX
+            recordBtn.AddToClassList("#RecordButton:active"); // ãƒœã‚¿ãƒ³ã‚¹ã‚¿ã‚¤ãƒ«å¤‰æ›´
+            recordLabel.AddToClassList("#RecordLabel:active"); // ãƒ©ãƒ™ãƒ«ã‚¹ã‚¿ã‚¤ãƒ«å¤‰æ›´
             recordLabel.text = "Now Recording...";
         }
 
-        //ƒŒƒR[ƒh‚ÌŠJnˆ—
+        //ãƒ¬ã‚³ãƒ¼ãƒ‰ã®é–‹å§‹å‡¦ç†
         if (analyzer is not null)
         {
-            //analyzer.StartAnalyzer();
+            analyzer.StartAnalyzer();
         }
         else
         {
-            Debug.LogError("analzer‚ªw’è‚³‚ê‚Ä‚È‚¢");
+            Debug.LogError("analzerãŒæŒ‡å®šã•ã‚Œã¦ãªã„");
         }
-        //ƒfƒoƒbƒN
+        //ãƒ‡ãƒãƒƒã‚¯
         //displayScore(1000);
     }
 
