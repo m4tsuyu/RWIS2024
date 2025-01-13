@@ -7,9 +7,10 @@ public class GameManager : MonoBehaviour
     public bool isRecord { get; set; }
     public bool isMissed {get; set;}
     public int MaxSeedNo { get; private set; }
+    public int MaxOjamaNo { get; private set; }
 
     [SerializeField] private seed[] seedPrefab;
-    [SerializeField] private GameObject ojamaPrefab;
+    [SerializeField] private ojama[] ojamaPrefab;
     [SerializeField] private Transform seedPosition;
     [SerializeField] private Transform ojamaPosition;
     [SerializeField] private Text txtScore;
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
         // 諸々初期化
         Instance = this;
         MaxSeedNo = seedPrefab.Length;
+        MaxOjamaNo = ojamaPrefab.Length;
         // scoreの初期化
         totalscore = 0;
         SetScore(totalscore);
@@ -50,7 +52,9 @@ public class GameManager : MonoBehaviour
         //isMissed trueのときお邪魔生成
         if(isMissed)
         {
-            Instantiate(ojamaPrefab, ojamaPosition);
+            ojama ojamaIns = Instantiate(ojamaPrefab[0], ojamaPosition);
+            ojamaIns.seedNo = 0;
+            ojamaIns.gameObject.SetActive(true);
         }
         else
         {
@@ -72,9 +76,14 @@ public class GameManager : MonoBehaviour
         SetScore(totalscore);
     }
 
-    // public void Mergeojama(Vector3 target,int seedNo)
-    // {
-    // }
+    public void MergeNextOjama(Vector3 target,int seedNo)
+    {
+        ojama ojamaIns = Instantiate(ojamaPrefab[seedNo + 1], target, Quaternion.identity, seedPosition);
+        ojamaIns.seedNo = seedNo + 1;
+        ojamaIns.isDrop = true;
+        ojamaIns.GetComponent<Rigidbody2D>().simulated = true;
+        ojamaIns.gameObject.SetActive(true);
+    }
 
     private void SetScore(int score)
     {
