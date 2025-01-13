@@ -65,7 +65,7 @@ public class UImanager : MonoBehaviour
         //displayScore(debug);
     }
 
-    public void changeRecordState(int state)
+    public void changeRecordState()
     {
         //デバック用
         if (recordBtn is null || recordLabel is null)
@@ -74,7 +74,7 @@ public class UImanager : MonoBehaviour
             return;
         }
 
-        switch (state)
+        switch (tapCount)
         {
             case 0:
                 //レコードボタンとレコードラベルのスタイルをデフォルトだけにする
