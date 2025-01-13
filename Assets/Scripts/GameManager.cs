@@ -88,6 +88,19 @@ public class GameManager : MonoBehaviour
         SetScore(totalscore);
     }
 
+    public void MergeLargest(Vector3 target,int seedNo)
+    {
+        seed seedIns = Instantiate(seedPrefab[0], target, Quaternion.identity, seedPosition);
+        seedIns.seedNo = 0;
+        seedIns.isDrop = true;
+        seedIns.GetComponent<Rigidbody2D>().simulated = true;
+        seedIns.gameObject.SetActive(true);
+        // スコア加算
+        totalscore += (int)Mathf.Pow(3, seedNo);
+        SetScore(totalscore);
+    }
+
+
     public void MergeNextOjama(Vector3 target,int seedNo)
     {
         ojama ojamaIns = Instantiate(ojamaPrefab[seedNo + 1], target, Quaternion.identity, seedPosition);
