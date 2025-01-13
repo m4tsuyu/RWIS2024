@@ -16,6 +16,7 @@ public class seed : MonoBehaviour
     }
     void Update()
     {
+        Debug.Log(transform.position.y);
         if (Input.GetMouseButton(0) && isDrop == false)
         {
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -25,10 +26,10 @@ public class seed : MonoBehaviour
             Drop();
         }
         if (isDrop) return;
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.x = Mathf.Clamp(mousePos.x, -2.7f, 2.7f);
-        mousePos.y = 3.5f;
-        transform.position = mousePos;
+        // mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        // mousePos.x = Mathf.Clamp(mousePos.x, -2.7f, 2.7f);
+        // mousePos.y = 3.5f;
+        // transform.position = mousePos;
     }
      private void Drop()
     {
