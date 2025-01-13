@@ -38,7 +38,7 @@ public class AudioAnalyzer : MonoBehaviour
     private void Update()
     {
         if (!isButtonPushed) return;
-        if (!managerScript.isNext) return;
+        // if (!managerScript.isNext) return;
         time += Time.deltaTime;
         if (time < RecordSec)
         {
@@ -69,6 +69,7 @@ public class AudioAnalyzer : MonoBehaviour
         time = 0f;
 
         isButtonPushed = true;
+        managerScript.isNext=false;
     }
 
     /// <summary>
