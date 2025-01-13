@@ -9,6 +9,8 @@ public class UImanager : MonoBehaviour
 {
     [SerializeField] private AudioAnalyzer analyzer;
     [SerializeField] private GameManager manager;
+    [SerializeField] private Sprite[] nodeImages; 
+
     private VisualElement root;
 
     //動的なUIパーツ
@@ -16,6 +18,7 @@ public class UImanager : MonoBehaviour
     Button munuBtn;
 
     Label recordLabel;
+    Label nextLabel;
     Label scoreLabel;
 
     VisualElement inputDisplay;
@@ -45,9 +48,11 @@ public class UImanager : MonoBehaviour
         //動的なコンポーネントの取得
         scoreLabel = root.Q<Label>("ScoreLabel");
         recordLabel = root.Q<Label>("RecordLabel");
-
-        //音階用ラベル
+        nextLabel = root.Q<Label>("NextNodeLabel");
+        //初期化
+        displayNextNode(6);
         
+        //音階用ラベル
         inputTone[0] = root.Q<Label>("C");
         inputTone[1] = root.Q<Label>("D");
         inputTone[2] = root.Q<Label>("E");
@@ -174,9 +179,44 @@ public class UImanager : MonoBehaviour
     {
         scoreLabel.text = text.ToString("D6");
     }
-    public void displayNextNode(int text)
+    public void displayNextNode(int nextnode)
     {
-        
+        Debug.Log("next"+nextnode);
+        switch (nextnode)
+        {
+            case 0: //C
+                nextLabel.text = "C";
+                break;
+            case 1: //D
+                nextLabel.text = "D";
+                break;
+            case 2: //E
+                nextLabel.text = "E";
+                break;
+            case 3: //F
+                nextLabel.text = "F";
+                break;
+            case 4: //G
+                nextLabel.text = "G";
+                break;
+            case 5: //A
+                nextLabel.text = "A";
+                break;
+            case 6: //B
+                nextLabel.text = "B";
+                break;
+            default:
+                nextLabel.text = "×";
+                break;
+        }
+        if(nextnode >= 0)
+        {
+            nextLabel.style.backgroundImage = new StyleBackground(nodeImages[nextnode+1]);
+        }
+        else
+        {
+            nextLabel.style.backgroundImage = new StyleBackground(nodeImages[0]);
+        }
     }
     public void gobackTitle()
     {
