@@ -27,6 +27,7 @@ public class AudioAnalyzer : MonoBehaviour
         manager = GameObject.Find("GameManager");
         managerScript = manager.GetComponent<GameManager>();
 
+
         Tone = -1;
         audio = GetComponent<AudioSource>();
         audio.clip = Microphone.Start(Microphone.devices[0], true, RecordSec, SamplingRate);

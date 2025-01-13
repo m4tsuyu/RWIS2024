@@ -18,18 +18,22 @@ public class GameManager : MonoBehaviour
     private int totalscore;
     private GameObject audio;
     private AudioAnalyzer audioScript;
-    
+    private UImanager uimanager;
+
     void Start()
     {
         // 諸々初期化
         audio = GameObject.Find("AudioAnalyzer");
         audioScript = audio.GetComponent<AudioAnalyzer>();
+        uimanager = GameObject.Find("UIDocument").GetComponent<UImanager>();
+
         Instance = this;
         MaxSeedNo = seedPrefab.Length;
         MaxOjamaNo = ojamaPrefab.Length;
         // scoreの初期化
         totalscore = 0;
-        SetScore(totalscore);
+        //SetScore(totalscore);
+
         //ここisNext=trueにしてAudioAnalyzerに投げる
         isNext=true;
     }
@@ -41,6 +45,9 @@ public class GameManager : MonoBehaviour
             // isRecordが立ったらseed生成
             isRecord = false;
             Invoke("CreateSeed", 1f);
+
+            //UIの変更
+            uimanager.changeRecordState(2);
         }
     }
      private void CreateSeed()
@@ -92,6 +99,7 @@ public class GameManager : MonoBehaviour
 
     private void SetScore(int score)
     {
-        txtScore.text = score.ToString();
+        //txtScore.text = score.ToString();
+        uimanager.displayScore(score);
     }
 }

@@ -31,7 +31,7 @@
     background-color: rgba(132, 132, 132, 0.98);
 }
 
-#RecordLabel {
+.record-label {
     width: 40%;
     height: 20%;
     color: rgb(204, 51, 0);
@@ -40,18 +40,23 @@
     -unity-text-align: center;
 }
 
-#RecordLabel:active {
-    font-size: var(--unity-metrics-default-font_normal_size);
+.record-label-recording {
+    font-size: 14px;
     color: rgb(192, 0, 192);
     text-shadow: 2px 2px 0 rgb(0, 235, 219);
-    -unity-font-definition: initial;
+}
+
+.record-label-operating {
+    font-size: 40px;
+    color: rgb(0, 171, 0);
+    text-shadow: 2px 2px 0 rgb(244, 192, 63);
 }
 
 #ScoreLabel {
     background-color: transparent;
     color: rgb(204, 51, 0);
     text-shadow: 2px 2px 0 rgb(255, 153, 0);
-    font-size: 25px;
+    font-size: 140%;
     -unity-text-align: center;
 }
 
