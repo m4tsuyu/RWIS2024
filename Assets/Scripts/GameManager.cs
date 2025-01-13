@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     private GameObject audio;
     private AudioAnalyzer audioScript;
     private UImanager uimanager;
+    private int prevSeedNo = -1;
 
     void Start()
     {
@@ -62,17 +63,19 @@ public class GameManager : MonoBehaviour
             isMissed = true;
         }
         //isMissed trueのときお邪魔生成
-        if(isMissed)
+        if(isMissed || i == prevSeedNo)
         {
             ojama ojamaIns = Instantiate(ojamaPrefab[0], ojamaPosition);
             ojamaIns.seedNo = 0;
             ojamaIns.gameObject.SetActive(true);
+            prevSeedNo = -1;
         }
         else
         {
         seed seedIns = Instantiate(seedPrefab[i], seedPosition);
         seedIns.seedNo = i;
         seedIns.gameObject.SetActive(true);
+        prevSeedNo = i;
         }
     }
 

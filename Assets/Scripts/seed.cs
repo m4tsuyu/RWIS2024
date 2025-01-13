@@ -16,7 +16,8 @@ public class seed : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(transform.position.y);
+        // Debug.Log(transform.position.y);
+        
         if (Input.GetMouseButton(0) && isDrop == false)
         {
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
