@@ -50,7 +50,6 @@ public class UImanager : MonoBehaviour
     {
 
         // RecordButtonとRecordLabelのUI変更
-        // changeRecordState(tapCount % 3);
         changeRecordState();
 
         //レコードの開始処理

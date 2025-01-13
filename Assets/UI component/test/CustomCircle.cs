@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public sealed class ExampleElement : VisualElement
+public sealed class CustomCircle : VisualElement
 {
-    public ExampleElement()
+    public CustomCircle()
     {
         generateVisualContent += OnGenerateVisualContent;
     }
