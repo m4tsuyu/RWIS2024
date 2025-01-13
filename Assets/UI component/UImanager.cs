@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -8,6 +9,8 @@ public class UImanager : MonoBehaviour
 {
     [SerializeField] private AudioAnalyzer analyzer;
     [SerializeField] private GameManager manager;
+    [SerializeField] private Sprite[] nodeImages; 
+
     private VisualElement root;
 
     //動的なUIパーツ
@@ -15,15 +18,25 @@ public class UImanager : MonoBehaviour
     Button munuBtn;
 
     Label recordLabel;
+    Label nextLabel;
     Label scoreLabel;
 
+    VisualElement inputDisplay;
+    Label[] inputTone = new Label[7];
+
+    //UI用遷移
     private int tapCount;
+    private int[] _TONEINDEX = new int[7]{0, 2, 4, 5,7,9,11};
+
+    //[SerializeField, Range(0f, 1f)] 
+    float time = 0f;
 
     void Start()
     {
         analyzer = GameObject.Find("AudioAnalyzer").GetComponent<AudioAnalyzer>();
         manager = GameManager.Instance;
 
+        tapCount = 1;
         root = this.GetComponent<UIDocument>().rootVisualElement;
 
         //ボタンイベントの登録
@@ -32,15 +45,35 @@ public class UImanager : MonoBehaviour
         munuBtn = root.Q<Button>("MenuButton");
         if (munuBtn is not null) munuBtn.clicked += () => { gobackTitle(); };
 
-
         //動的なコンポーネントの取得
         scoreLabel = root.Q<Label>("ScoreLabel");
         recordLabel = root.Q<Label>("RecordLabel");
-        tapCount = 1;
+        nextLabel = root.Q<Label>("NextNodeLabel");
+        //初期化
+        displayNextNode(6);
+        
+        //音階用ラベル
+        inputTone[0] = root.Q<Label>("C");
+        inputTone[1] = root.Q<Label>("D");
+        inputTone[2] = root.Q<Label>("E");
+        inputTone[3] = root.Q<Label>("F");
+        inputTone[4] = root.Q<Label>("G");
+        inputTone[5] = root.Q<Label>("A");
+        inputTone[6] = root.Q<Label>("B");
     }
 
     void Update()
     {
+        //float inputDisplayHeight = root.Q<VisualElement>("InputDisplay").resolvedStyle.height;
+        //// ラベルの高さを設定
+        //float offset = 0f;
+        //foreach (Label l in inputTone)
+        //{
+        //    float rate = Mathf.Clamp01(Mathf.Sin(time + offset));
+            
+        //    offset += 0.1f;
+        //}
+        //time += 0.01f;
     }
 
     /* 
@@ -125,16 +158,66 @@ public class UImanager : MonoBehaviour
         tapCount++;
     }
 
-    void displayInput()
+    public void displayInput(int[] toneRecord)
     {
+        float inputDisplayHeight = root.Q<VisualElement>("InputDisplay").resolvedStyle.height;
 
+        int sum = toneRecord.Sum();
+        int l = 0;
+        foreach(int index in _TONEINDEX)
+        {
+            int tone = toneRecord[index];
+            float r = (float)tone / sum;
+            // ラベルの高さを設定
+            //inputTone[l].style.height = new StyleLength(r * inputDisplayHeight);
+            Debug.Log(r);
+            l++;
+        }
     }
 
     public void displayScore(int text)
     {
         scoreLabel.text = text.ToString("D6");
     }
-
+    public void displayNextNode(int nextnode)
+    {
+        Debug.Log("next"+nextnode);
+        switch (nextnode)
+        {
+            case 0: //C
+                nextLabel.text = "C";
+                break;
+            case 1: //D
+                nextLabel.text = "D";
+                break;
+            case 2: //E
+                nextLabel.text = "E";
+                break;
+            case 3: //F
+                nextLabel.text = "F";
+                break;
+            case 4: //G
+                nextLabel.text = "G";
+                break;
+            case 5: //A
+                nextLabel.text = "A";
+                break;
+            case 6: //B
+                nextLabel.text = "B";
+                break;
+            default:
+                nextLabel.text = "×";
+                break;
+        }
+        if(nextnode >= 0)
+        {
+            nextLabel.style.backgroundImage = new StyleBackground(nodeImages[nextnode+1]);
+        }
+        else
+        {
+            nextLabel.style.backgroundImage = new StyleBackground(nodeImages[0]);
+        }
+    }
     public void gobackTitle()
     {
         SceneManager.LoadScene("TitleScene");

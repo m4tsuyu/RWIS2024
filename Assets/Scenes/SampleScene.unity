@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -278,7 +277,7 @@ Transform:
   m_GameObject: {fileID: 379986707}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0, z: 0}
+  m_LocalPosition: {x: -0.23, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1345,6 +1344,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   analyzer: {fileID: 546895304}
   manager: {fileID: 1667323779}
+  nodeImages:
+  - {fileID: 21300000, guid: b673d43e9be831b469f53361b395f182, type: 3}
+  - {fileID: 21300000, guid: e28ad55a1409d0b49a3a01137e0dea75, type: 3}
+  - {fileID: 21300000, guid: c8a20040d3273784e9d85cbb5a6772b9, type: 3}
+  - {fileID: 21300000, guid: 571d3214da1308144affdd11c67f73c5, type: 3}
+  - {fileID: 21300000, guid: c44aaf1cbf8157c4b891033ab16371b6, type: 3}
+  - {fileID: 21300000, guid: 9fc1b83fd194f784f9de2f407e80e6ed, type: 3}
+  - {fileID: 21300000, guid: c9b05119619c13842b3d041624af1250, type: 3}
+  - {fileID: 21300000, guid: 905f288194d425941a308c1238110517, type: 3}
 --- !u!1 &1867099048
 GameObject:
   m_ObjectHideFlags: 0

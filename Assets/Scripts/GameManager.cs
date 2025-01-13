@@ -77,6 +77,8 @@ public class GameManager : MonoBehaviour
         seedIns.gameObject.SetActive(true);
         prevSeedNo = i;
         }
+
+        uimanager.displayNextNode(i);
     }
 
     public void MergeNext(Vector3 target,int seedNo)
