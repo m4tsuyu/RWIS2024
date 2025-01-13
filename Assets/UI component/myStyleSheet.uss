@@ -41,7 +41,7 @@
 }
 
 #RecordLabel:active {
-    font-size: var(--unity-metrics-default-font_normal_size);
+    font-size: 14px;
     color: rgb(192, 0, 192);
     text-shadow: 2px 2px 0 rgb(0, 235, 219);
     -unity-font-definition: initial;

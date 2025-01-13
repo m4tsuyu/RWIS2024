@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class UIController : MonoBehaviour
+public class UImanager : MonoBehaviour
 {
     [SerializeField] private AudioAnalyzer analyzer;
     [SerializeField] private GameManager manager;
@@ -15,6 +15,8 @@ public class UIController : MonoBehaviour
 
     Label recordLabel;
     Label scoreLabel;
+
+
     void Start()
     {
         analyzer = GameObject.Find("AudioAnalyzer").GetComponent<AudioAnalyzer>();
@@ -33,10 +35,8 @@ public class UIController : MonoBehaviour
         recordLabel = root.Q<Label>("RecordLabel");
     }
 
-    // Update is called once per frame
     void Update()
     {
-
     }
 
     /* 
@@ -51,7 +51,7 @@ public class UIController : MonoBehaviour
         {
             recordBtn.AddToClassList("#RecordButton:active"); // ボタンスタイル変更
             recordLabel.AddToClassList("#RecordLabel:active"); // ラベルスタイル変更
-            recordLabel.text = "Now Recording...";
+            displayLabel("Now Recording...");
         }
 
         //レコードの開始処理
@@ -65,6 +65,28 @@ public class UIController : MonoBehaviour
         }
         //デバック
         //displayScore(1000);
+    }
+
+    public void displayLabel(string text)
+    {
+        switch (text)
+        {
+            case "Tap!":
+                //レコードボタンをデフォルトだけにする
+                //ボタンの入力を受け付ける
+                recordLabel.text = text;
+                break;
+            case "Now Recording...":
+                //レコードボタンにactive追加
+                //ボタン入力を受け付けない
+                recordLabel.text = text;
+                break;
+            case "Drop!":
+                //ボタンはアクティブのまま、ラベルスタイルとテキストだけ変更
+                //ボタン入力を受け付けないまま
+                recordLabel.text = text;
+                break;
+        }
     }
 
     void displayInput()
