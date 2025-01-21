@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
         }
 
         uimanager.displayNextNode(i);
-        //uimanager.displayNextOjama(prevSeedNo);
+        uimanager.displayNextOjama(prevSeedNo);
     }
 
     public void MergeNext(Vector3 target,int seedNo)
