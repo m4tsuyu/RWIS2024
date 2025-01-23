@@ -124,4 +124,9 @@ public class GameManager : MonoBehaviour
         //txtScore.text = score.ToString();
         uimanager.displayScore(score);
     }
+
+    public int GetScore()
+    {
+        return totalscore;
+    }
 }

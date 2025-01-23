@@ -2,6 +2,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 public class line : MonoBehaviour
 {
+    [SerializeField] GameObject gameManager;
     private float stayTime;
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -10,7 +11,8 @@ public class line : MonoBehaviour
             stayTime += Time.deltaTime;
             if (stayTime > 4.0f)
             {
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene("ScoreScene");
+                GetScore.score = gameManager.GetComponent<GameManager>().GetScore();
             }
         }
     }
